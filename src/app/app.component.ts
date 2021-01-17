@@ -1,3 +1,4 @@
+import { TitleCasePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as actions from './contador/contador.actions';
@@ -19,9 +20,8 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.store.subscribe((state) => {
-      console.log(state);
-      this.contador = state.contador;
+    this.store.select('contador').subscribe((contador) => {
+      this.contador = contador;
     });
   }
 
